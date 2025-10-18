@@ -1,0 +1,686 @@
+{% comment %} 
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qutbi Travels - Premium Car Rentals</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #121212;
+            color: #ffffff;
+            scroll-behavior: smooth;
+        }
+        a { text-decoration: none; }
+        h2, h3 { font-weight: 600; }
+
+        /* Hero Section */
+        .hero-section {
+            background: url("{% static 'images/hero-bg.jpg' %}") center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+        .hero-section .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FFA826;
+        }
+        .hero-section h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+        }
+        .hero-section p {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        .btn-warning {
+            background: #FFA826;
+            border: none;
+            border-radius: 50px;
+            padding: 0.75rem 2rem;
+        }
+        .btn-warning:hover {
+            transform: scale(1.05);
+            transition: 0.3s;
+        }
+
+        /* Section Spacing */
+        section { padding: 5rem 0; }
+
+        /* Cards */
+        .card {
+            border-radius: 15px;
+            background: #1e293b;
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-5px); }
+
+        /* Fleet badges */
+        .badge { background: #FFA826; color: #121212; }
+
+        /* Testimonial stars */
+        .star { color: #FFA500; }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            color: #b0b0b0;
+            padding: 3rem 0;
+        }
+        footer a { color: #FFA826; }
+
+        @media (max-width: 576px) {
+            .hero-section h1 { font-size: 2rem; }
+            .hero-section p { font-size: 1rem; }
+            section { padding: 3rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<header class="hero-section">
+    <div class="logo">Qutbi Travels</div>
+    <h1>Premium Car Rentals</h1>
+    <p>Your trusted travel partner</p>
+    <a href="#book" class="btn btn-warning">Book Our Ride</a>
+</header>
+
+<!-- Why Choose -->
+<section class="why-choose text-center">
+    <h2>Why Choose Qutbi Travels?</h2>
+    <p>Experience the best car rental service with professional drivers</p>
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
+        <div class="col">
+            <div class="card p-4 text-center">
+                <i class="fa-solid fa-car fa-2x mb-2 text-warning"></i>
+                <h5 class="mt-2">24/7 Available Cars</h5>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card p-4 text-center">
+                <i class="fa-solid fa-user-tie fa-2x mb-2 text-warning"></i>
+                <h5 class="mt-2">Best Drivers</h5>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card p-4 text-center">
+                <i class="fa-solid fa-shield fa-2x mb-2 text-warning"></i>
+                <h5 class="mt-2">Safe & Secure Travel</h5>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card p-4 text-center">
+                <i class="fa-solid fa-globe fa-2x mb-2 text-warning"></i>
+                <h5 class="mt-2">Pan India Service</h5>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Where We Serve -->
+<section class="where-we-serve text-center">
+    <h2>Where We Serve</h2>
+    <p>Serving across multiple states with extensive coverage</p>
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
+        <div class="col">
+            <div class="card p-4 text-center">
+                <i class="fa-solid fa-location-dot fa-2x mb-2 text-warning"></i>
+                <h5>Gujarat</h5>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card p-4 text-center">
+                <i class="fa-solid fa-location-dot fa-2x mb-2 text-warning"></i>
+                <h5>Rajasthan</h5>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card p-4 text-center">
+                <i class="fa-solid fa-location-dot fa-2x mb-2 text-warning"></i>
+                <h5>Madhya Pradesh</h5>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card p-4 text-center">
+                <i class="fa-solid fa-location-dot fa-2x mb-2 text-warning"></i>
+                <h5>Pan India Tours</h5>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Premium Fleet -->
+<section class="premium-fleet text-center">
+    <h2>Our Premium Fleet</h2>
+    <p>Explore our wide range of well-maintained vehicles</p>
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
+        <!-- Example Car Card -->
+        <div class="col">
+            <div class="card p-3">
+                <img src="{% static 'images/cars/suzuki-swift.jpg' %}" class="card-img-top rounded" alt="Suzuki Swift">
+                <div class="card-body">
+                    <h5 class="card-title">Suzuki Swift</h5>
+                    <p>Sedan | 4-5 Seater</p>
+                    <span class="badge rounded-pill me-1">AC</span>
+                    <span class="badge rounded-pill me-1">Spacious Boot</span>
+                    <span class="badge rounded-pill">Premium Interior</span>
+                </div>
+            </div>
+        </div>
+        <!-- Repeat for other cars (total 8) -->
+    </div>
+</section>
+
+<!-- Booking Form -->
+<section id="book">
+    <div class="container py-5">
+        <h2 class="mb-4 text-center">Book Your Ride</h2>
+        <div class="card bg-secondary p-4 mx-auto" style="max-width:600px;">
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">Full Name</label>
+                    {{ form.name }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Contact Number</label>
+                    {{ form.phone }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Number of Persons</label>
+                    {{ form.persons }}
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Travel Start Date</label>
+                        {{ form.travel_start_date }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Travel End Date</label>
+                        {{ form.travel_end_date }}
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Additional Information</label>
+                    {{ form.description }}
+                </div>
+                <button type="submit" class="btn btn-warning w-100">Submit Booking Request</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials text-center">
+    <h2>What Our Customers Say</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+        <div class="col">
+            <div class="card p-3">
+                <p class="mb-1">⭐⭐⭐⭐⭐</p>
+                <h5 class="mb-0">Rahul, Mumbai</h5>
+                <p>Excellent service and punctual drivers!</p>
+                <small>12 Oct 2025</small>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card p-3">
+                <p class="mb-1">⭐⭐⭐⭐⭐</p>
+                <h5 class="mb-0">Sita, Delhi</h5>
+                <p>Clean and comfortable cars, highly recommended.</p>
+                <small>05 Oct 2025</small>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card p-3">
+                <p class="mb-1">⭐⭐⭐⭐⭐</p>
+                <h5 class="mb-0">Amit, Bangalore</h5>
+                <p>Great experience with friendly drivers!</p>
+                <small>20 Sep 2025</small>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="text-center text-md-start mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <h5>Qutbi Travels</h5>
+                <p>Your trusted car rental partner.</p>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h5>Contact Info</h5>
+                <p><i class="fa-solid fa-phone"></i> +91 9876543210</p>
+                <p><i class="fa-solid fa-envelope"></i> info@qutbitravels.com</p>
+                <p><i class="fa-solid fa-location-dot"></i> Ahmedabad, Gujarat</p>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h5>Quick Links</h5>
+                <a href="#book">Book Now</a><br>
+                <a href="#fleet">Fleet</a><br>
+                <a href="#testimonials">Testimonials</a>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <small>&copy; 2025 Qutbi Travels. All rights reserved.</small>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+ {% endcomment %}
+
+ {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qutbi Travels - Premium Car Rentals</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #121212;
+            color: #ffffff;
+            scroll-behavior: smooth;
+        }
+
+        a { text-decoration: none; }
+
+        /* Hero Section */
+        .hero-section {
+            background: url("{% static 'images/hero-bg.jpg' %}") center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+        .hero-section .overlay {
+            position: absolute;
+            top: 0; left:0;
+            width:100%; height:100%;
+            background: rgba(0,0,0,0.5);
+        }
+        .hero-section .content {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-section .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FFA826;
+        }
+
+        .hero-section h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .hero-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .btn-hero {
+            background: #FFA826;
+            border: none;
+            border-radius: 50px;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-hero:hover {
+            transform: scale(1.05);
+            transition: 0.3s;
+        }
+        .btn-hero .fa-spin-hover:hover {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .mouse-icon {
+            display: block;
+            font-size: 1.5rem;
+            margin: 1rem auto 0;
+            animation: upDown 1.5s ease-in-out infinite;
+            color: #FFA826;
+        }
+        @keyframes upDown {
+            0%,100%{ transform: translateY(0); }
+            50%{ transform: translateY(10px); }
+        }
+
+        /* Navbar */
+        nav.navbar {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+            background: rgba(0,0,0,0.6);
+        }
+
+        /* Section Titles */
+        section h2 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        section p.sub {
+            color: #FFA826;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        section p.desc {
+            color: #ccc;
+            font-weight: 400;
+            margin-bottom: 2rem;
+        }
+
+        /* Cards */
+        .card {
+            border-radius: 15px;
+            background: #1e293b;
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card .fa {
+            color: #FFA826;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Booking Form */
+        .booking-card {
+            background: #1e293b;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .booking-card .btn {
+            background: #FFA826;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .booking-card .btn:hover { transform: scale(1.05); }
+
+        @media (max-width: 576px) {
+            .hero-section h1 { font-size: 2rem; }
+            .hero-section h3 { font-size: 1rem; }
+            section { padding: 3rem 1rem; }
+            .card { margin-bottom: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand text-warning fw-bold" href="#">Qutbi Travels</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="#fleet">Our Fleet</a></li>
+        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#book">Book Now</a></li>
+        <li class="nav-item"><a class="nav-link" href="#testimonials">Reviews</a></li>
+        <li class="nav-item"><a class="btn btn-warning ms-3" href="#footer"><i class="fa fa-phone"></i> Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="hero-section">
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="logo">Qutbi Travels</div>
+        <h1>PREMIUM CAR RENTALS</h1>
+        <h3>Your trusted travel partner</h3>
+        <a href="#book" class="btn btn-hero">
+            <i class="fa fa-car fa-spin-hover me-2"></i> Book Our Ride
+        </a>
+        <i class="fa fa-mouse mouse-icon"></i>
+    </div>
+</header>
+
+<!-- Why Choose Section -->
+<section class="why-choose text-center" id="services">
+    <h2>Why Choose Qutbi Travels?</h2>
+    <p class="sub">Experience the best car rental service with professional drivers</p>
+    <p class="desc">Reliable, Safe, and Comfortable rides across India</p>
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
+        <div class="col">
+            <div class="card p-4 text-center">
+                <i class="fa-solid fa-car-side"></i>
+                <h5 class="mt-2">24/7 Available Cars</h5>
+                <p>Always ready with multiple car options</p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card p-4 text-center">
+                <i class="fa-solid fa-user-tie"></i>
+                <h5 class="mt-2">Best Drivers</h5>
+                <p>Professional and experienced drivers</p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card p-4 text-center">
+                <i class="fa-solid fa-shield"></i>
+                <h5 class="mt-2">Safe & Secure Travel</h5>
+                <p>Modern vehicles with safety features</p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card p-4 text-center">
+                <i class="fa-solid fa-globe"></i>
+                <h5 class="mt-2">Pan India Service</h5>
+                <p>Extensive coverage across multiple states</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Where We Serve Section -->
+<section class="where-we-serve text-center">
+    <h2>Where We Serve</h2>
+    <p class="sub">Serving across multiple states with extensive coverage</p>
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
+        <div class="col">
+            <div class="card p-4 text-center">
+                <i class="fa-solid fa-location-dot"></i>
+                <h5 class="mt-2">Gujarat</h5>
+                <p>Multiple cities covered</p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card p-4 text-center">
+                <i class="fa-solid fa-location-dot"></i>
+                <h5 class="mt-2">Rajasthan</h5>
+                <p>Explore the royal land</p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card p-4 text-center">
+                <i class="fa-solid fa-location-dot"></i>
+                <h5 class="mt-2">Madhya Pradesh</h5>
+                <p>Central India coverage</p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card p-4 text-center">
+                <i class="fa-solid fa-location-dot"></i>
+                <h5 class="mt-2">Pan India Tours</h5>
+                <p>Travel across India</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Premium Fleet -->
+<section class="premium-fleet text-center">
+    <h2>Our Premium Fleet</h2>
+    <p>Explore our wide range of well-maintained vehicles</p>
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
+        <!-- Example Car Card -->
+        <div class="col">
+            <div class="card p-3">
+                <img src="{% static 'images/cars/suzuki-swift.jpg' %}" class="card-img-top rounded" alt="Suzuki Swift">
+                <div class="card-body">
+                    <h5 class="card-title">Suzuki Swift</h5>
+                    <p>Sedan | 4-5 Seater</p>
+                    <span class="badge rounded-pill me-1">AC</span>
+                    <span class="badge rounded-pill me-1">Spacious Boot</span>
+                    <span class="badge rounded-pill">Premium Interior</span>
+                </div>
+            </div>
+        </div>
+        <!-- Repeat for other cars (total 8) -->
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials text-center">
+    <h2>What Our Customers Say</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+        <div class="col">
+            <div class="card p-3">
+                <p class="mb-1">⭐⭐⭐⭐⭐</p>
+                <h5 class="mb-0">Rahul, Mumbai</h5>
+                <p>Excellent service and punctual drivers!</p>
+                <small>12 Oct 2025</small>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card p-3">
+                <p class="mb-1">⭐⭐⭐⭐⭐</p>
+                <h5 class="mb-0">Sita, Delhi</h5>
+                <p>Clean and comfortable cars, highly recommended.</p>
+                <small>05 Oct 2025</small>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card p-3">
+                <p class="mb-1">⭐⭐⭐⭐⭐</p>
+                <h5 class="mb-0">Amit, Bangalore</h5>
+                <p>Great experience with friendly drivers!</p>
+                <small>20 Sep 2025</small>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card p-3">
+                <p class="mb-1">⭐⭐⭐⭐⭐</p>
+                <h5 class="mb-0">Jay, Gujarat</h5>
+                <p>Really Maza aa gaya travelling kar ke..!</p>
+                <small>10 Oct 2025</small>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Booking Form -->
+<section id="book">
+    <div class="container py-5">
+        <h2 class="text-center mb-4">Book Your Ride</h2>
+        <div class="booking-card">
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">Full Name</label>
+                    {{ form.name }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Contact Number</label>
+                    {{ form.phone }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Number of Persons</label>
+                    {{ form.persons }}
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Travel Start Date</label>
+                        {{ form.travel_start_date }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Travel End Date</label>
+                        {{ form.travel_end_date }}
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Additional Information</label>
+                    {{ form.description }}
+                </div>
+                <button type="submit" class="btn w-100">Submit Booking Request</button>
+            </form>
+        </div>
+    </div>
+</section>
+<footer class="text-center text-md-start mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <h5>Qutbi Travels</h5>
+                <p>Your trusted car rental partner.</p>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h5>Contact Info</h5>
+                <p><i class="fa-solid fa-phone"></i> +91 9876543210</p>
+                <p><i class="fa-solid fa-envelope"></i> info@qutbitravels.com</p>
+                <p><i class="fa-solid fa-location-dot"></i> Ahmedabad, Gujarat</p>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h5>Quick Links</h5>
+                <a href="#book">Book Now</a><br>
+                <a href="#fleet">Fleet</a><br>
+                <a href="#testimonials">Testimonials</a>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <small>&copy; 2025 Qutbi Travels. All rights reserved.</small>
+        </div>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
