@@ -290,7 +290,7 @@
 </html>
  {% endcomment %}
 
- {% load static %}
+ {% comment %} {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -683,4 +683,738 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+ {% endcomment %}
 
+
+ <!DOCTYPE html>
+ {% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qutbi Travels - Premium Car Rentals</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #121212;
+            color: #fff;
+            scroll-behavior: smooth;
+        }
+        a {text-decoration: none;}
+        /* Navbar */
+        .navbar {
+            background: rgba(0,0,0,0.75);
+            padding: 0.6rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 38px;
+            width: 38px;
+            margin-right: 0.8rem;
+        }
+        .nav-title {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .brand-main {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #FFA826;
+            letter-spacing: 1px;
+        }
+        .brand-sub {
+            font-size: 0.95rem;
+            color: #ccc;
+            margin-top: -2px;
+            letter-spacing: 1px;
+        }
+        .nav-right a {
+            color: #fff;
+            font-weight: 500;
+            margin: 0 1rem;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+        .nav-right .btn-contact {
+            background: #FFA826;
+            color: #222 !important;
+            font-weight: 600;
+            border-radius: 40px;
+            padding: 0.45rem 1.3rem;
+            margin-left: 0.8rem;
+            border: none;
+            transition: background .25s;
+        }
+        .nav-right .btn-contact:hover {background: #ffc86c;}
+        .nav-right a:hover {color: #FFA826;}
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Hero */
+        .hero-section {
+            background: url("{% static 'images/hero-bg.jpg' %}") center/cover no-repeat;
+            min-height: 92vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .hero-section::before {
+            content: "";
+            background: rgba(0,0,0,0.5);
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 1;
+        }
+        .hero-section > * {position: relative; z-index: 2;}
+        .logo-large {
+            font-size: 80px;
+            font-weight: 700;
+            color: #FFA826;
+        }
+        .hero-section h1 {
+            font-size: 20px;
+            letter-spacing: 1px;
+            font-weight: 200;
+            margin-bottom: 0.5rem;
+        }
+        .hero-section h3 {
+            font-size: 30px;
+            font-weight: 100;
+            color: #FFC86C;
+            margin-bottom: 1.4rem;
+        }
+        .btn-book {
+            background: #FFA826;
+            color: #232323;
+            font-weight: 600;
+            font-size: 1.09rem;
+            border-radius: 40px;
+            border: none;
+            padding: 0.7rem 2.1rem;
+            margin-bottom: 1.3rem;
+            margin-top: .5rem;
+            transition: transform .22s;
+        }
+        .btn-book:hover {transform: scale(1.06);}
+        .mouse-icon {
+            font-size: 2rem;
+            color: #fff;
+            animation: mouseMove 1.4s ease-in-out infinite;
+            margin-top: 1.4rem;
+        }
+        @keyframes mouseMove {
+            0%,100%{transform: translateY(0);}
+            50%{transform: translateY(12px);}
+        }
+
+        /* Card Generic Styles */
+        .row-cards {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 70px;
+            justify-content: space-around;
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .row-cards p{
+            font-size: 14px;
+            color: #9CA3AF;
+        }
+        .fleet{ 
+            background-color: #121212;
+        }
+        .qcard, .fleet-card, .wcard, .review-card {
+            background: #1e293b;
+            border-radius: 22px;
+            padding: 1.6rem 1rem 1.1rem 1rem;
+            text-align: center;
+            min-width: 190px;
+            max-width: 260px;
+            min-height: 260px;
+            max-height: 300px;
+            flex: 1 1 220px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.21);
+            border: 2px solid transparent;
+            transition: border-color 0.28s, box-shadow 0.18s;
+        }
+        .qcard .qicon,.wcard .wicon,.fleet-card .fleeticon,.review-card .star{
+            font-size: 2.3rem;
+            margin-bottom: 0.7rem;
+        }
+        .qcard:hover, .wcard:hover {
+            border-image: linear-gradient(180deg,#FFA826,#2196f3);
+            border-image-slice: 1;
+            box-shadow: 0 8px 30px rgba(34,161,255,0.13);
+        }
+
+        
+        /* Card color icons */
+        .qcard .fa-car-side {color: #60A5FA;}
+        .qcard .fa-user-tie {color: #FB923C;}
+        .qcard .fa-shield {color: #4ADE80;}
+        .qcard .fa-globe {color: #ff4343;}
+        .wcard .fa-location-dot:nth-child(1) {color: #FFA826;}
+        .wcard .fa-location-dot:nth-child(2) {color: #2196f3;}
+        .wcard .fa-location-dot:nth-child(3) {color: #30d158;}
+        .wcard .fa-location-dot:nth-child(4) {color: #ff4343;}
+        /* Responsive cards */
+        @media (max-width: 900px) {
+            .row-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            .qcard, .fleet-card, .wcard, .review-card {
+                max-width: 98vw;
+                min-width: 0;
+            }
+        }
+
+        .serve{
+            background-color: #111827;
+            height: 525px;
+        }
+        /* Section Styling */
+        section {
+            padding: 48px 0 10px 0;
+        }
+        section h2 {
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: .5rem;
+        }
+        .sub, .desc {
+            color: #cccccc;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        .desc {color: #cccccc; font-weight: 400;}
+
+        /* Fleet */
+        .fleet-card {
+            padding-top: 0px;
+            min-height: 370px;
+        }
+        .fleet-card img {
+            width: 100%;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            height: 110px;
+            object-fit: cover;
+            margin-bottom: 1.1rem;
+            background: #292929;
+        }
+        .fleet-card .fleet-badges {
+            margin-top: 7px;
+        }
+        .fleet-badge {
+            display: inline-block;
+            background: #2b5ebb;
+            color: #fff;
+            border-radius: 9px;
+            font-size: .82rem;
+            padding: 0.17rem .65rem;
+            margin: 2px 2px 0 0;
+        }
+
+        /* Booking Card/Section */
+        .booking-card {
+            background: #1e293b;
+            border-radius: 18px;
+            padding: 2.2rem 1.5rem 2rem 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 3px 14px rgba(0,0,0,0.16);
+        }
+        .booking-card .btn {
+            background: #FFA826;
+            font-weight: 600;
+            color: #232323;
+        }
+        .booking-card .btn:hover {box-shadow: 0 3px 10px #e7bc7e;}
+        
+        /* Testimonials */
+        #testimonials{
+            height: 500px;
+        }
+        .review-card {
+            min-height: 155px;
+            padding: 1.2rem 1rem;
+        }
+        .review-card .star {
+            color: #FFA826;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .review-card small {color: #bbbbbb;}
+        .review-card h5 { font-weight: 600; margin-bottom: 0.13rem;}
+
+        /* Footer */
+        footer {
+            background: #181e25;
+            color: #fff;
+            padding: 35px 0 0 0;
+            border-top: 2px solid #222;
+            margin-top: 32px;
+            font-size: 1rem;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 38px;
+            padding: 0 8vw;
+        }
+        .footer-column {
+            flex: 1 1 220px;
+            min-width: 180px;
+        }
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #FFA826;
+            margin-bottom: -5px;
+            display: flex;
+        }
+        .footer-brand {
+            font-weight: 700;
+            color: #ffa826;
+            font-size: 1.23rem;
+        }
+        .footer-sub {
+            color: #ccc;font-size: 0.93rem;
+            margin-top: -1px;
+            padding-bottom: -20px;
+            display: flex;
+        }
+        .footer-line {
+            border: none;
+            border-top: 1px solid #333;
+            margin: 16px 0 14px 0;
+        }
+        .footer-copy {
+            text-align: center;
+            color: #bbbbbb;
+            margin-bottom: 0;
+            padding: 9px 0 18px 0;
+            font-size: .97rem;
+        }
+        .footer-column a {
+            color: #FFA826;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .footer-column a:hover {text-decoration: underline;}
+        .footer-icon {
+            color: #FFA826;
+            margin-right: 6px;
+        }
+        @media (max-width:700px) {
+            .footer-content {flex-direction: column;align-items: flex-start;gap: 18px;}
+            .footer-column {width:100%;}
+        }
+        @media (max-width:640px){
+            .footer-content{padding: 0 2vw;}
+        }
+        /* Utility */
+        .pt-0 {padding-top:0 !important;}
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="container">
+    <div class="nav-left">
+      <span class="logo"><img src="{% static 'images/logo.jpg' %}" alt="Qutbi Logo"></span>
+      <div class="nav-title">
+        <span class="brand-main">Qutbi Travels</span>
+        <span class="brand-sub">Premium Rentals</span>
+      </div>
+    </div>
+    <div class="nav-right d-none d-lg-flex align-items-center">
+      <a href="#fleet">Our Fleet</a>
+      <a href="#services">Services</a>
+      <a href="#book">Book Now</a>
+      <a href="#testimonials">Reviews</a>
+      <a class="btn-contact" href="#footer"><i class="fa fa-phone"></i> Contact</a>
+    </div>
+    <!-- Mobile Responsive Navbar could be added here -->
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="hero-section">
+    <span class="logo"><img src="{% static 'images/logo.jpg' %}" alt="Qutbi Logo" style="height: 100px; width: 100px;"></span>
+    <div class="logo-large">Qutbi Travels</div>
+    <h1>PREMIUM CAR RENTALS</h1>
+    <h3>Your journey, our commitment</h3>
+    <a href="#book" class="btn-book">Book Your Ride</a>
+    <i class="fa fa-mouse mouse-icon"></i>
+</header>
+
+<!-- Why Choose Section -->
+<section id="services" class="pt-7 ">
+    <h2 class="text-center">Why Choose Qutbi Travels?</h2>
+    {% comment %} <p class="sub text-center pt-3">Experience the best car rental service with professional drivers</p> {% endcomment %}
+    <p class="desc text-center pt-0">Experience the best car rental service with professional drivers</p>
+    <div class="row-cards pt-5 " >
+      <div class="qcard mr-20">
+        <i class="fa-solid fa-car-side qicon"></i>
+        <h5>24/7 Available Cars</h5>
+        <p>Always ready with multiple car options</p>
+      </div>
+      <div class="qcard">
+        <i class="fa-solid fa-user-tie qicon"></i>
+        <h5>Best Drivers</h5>
+        <p>Professional and experienced drivers</p>
+      </div>
+      <div class="qcard">
+        <i class="fa-solid fa-shield qicon"></i>
+        <h5>Safe & Secure Travel</h5>
+        <p>Modern vehicles with safety features</p>
+      </div>
+      <div class="qcard">
+        <i class="fa-solid fa-globe qicon"></i>
+        <h5>Pan India Service</h5>
+        <p>Extensive coverage across multiple states</p>
+      </div>
+    </div>
+</section>
+
+<!-- Where We Serve -->
+<section class="serve pt-0">
+    <h2 class="text-center pt-5">Where We Serve</h2>
+    <p class="sub text-center ">Serving across multiple states with extensive coverage</p>
+    <div class="row-cards">
+      <div class="wcard pt-5"><i class="fa-solid fa-location-dot wicon"></i>
+         <h5>Gujarat</h5>
+         <p>Complete coverage across Gujarat state</p>
+      </div>
+      <div class="wcard pt-5"><i class="fa-solid fa-location-dot wicon"></i>
+         <h5>Rajasthan</h5>
+         <p>Extensive service in Rajasthan</p>
+      </div>
+      <div class="wcard pt-5"><i class="fa-solid fa-location-dot wicon"></i>
+         <h5>Madhya Pradesh</h5>
+         <p>Reliable service across MP</p>
+      </div>
+      <div class="wcard pt-5"><i class="fa-solid fa-location-dot wicon"></i>
+         <h5>Pan India Tours</h5>
+         <p>Travel anywhere in India</p>
+      </div>
+    </div>
+</section>
+
+<!-- Premium Fleet -->
+<section id="fleet" class="fleet" style="padding:40px 40px; background-color:#121212; color:white;">
+  <h2 style="text-align:center; padding-top:20px;">Our Premium Fleet</h2>
+  <p style="text-align:center; padding:10px 0 30px 0;">Explore our wide range of well-maintained vehicles</p>
+  
+  <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px;">
+
+    <!-- Card 1 -->
+    <div style="background-color:#1F2937; border-radius:10px; width:23%; min-width:250px; transition:all 0.3s ease; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,0.4);">
+      <img src="{% static 'images/cars/suzuki-swift.jpeg' %}" alt="Suzuki Swift"
+           style="width:100%; height:160px; object-fit:cover; border-top-left-radius:10px; border-top-right-radius:10px;">
+      <div style="padding:15px;">
+        <h5 style="margin:10px 0;">Suzuki Swift</h5>
+        <span style="color:#9CA3AF;">Economy</span>
+        <div style="margin-top:8px;"><i class="fa fa-user-friends" style="font-size:1.1rem; color:#60A5FA;"></i> 4-5 Seater</div>
+        <div style="margin-top:10px;">
+          <span style="background:#374151; padding:4px 10px; border-radius:5px; margin:3px; font-size:0.85rem;">AC</span>
+          <span style="background:#374151; padding:4px 10px; border-radius:5px; margin:3px; font-size:0.85rem;">Spacious Boot</span><br>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div style="background-color:#1F2937; border-radius:10px; width:23%; min-width:250px; transition:all 0.3s ease; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,0.4);">
+      <img src="{% static 'images/cars/ertiga.jpeg' %}" alt="Suzuki Ertiga"
+           style="width:100%; height:160px; object-fit:cover; border-top-left-radius:10px; border-top-right-radius:10px;">
+      <div style="padding:15px;">
+        <h5 style="margin:10px 0;">Suzuki Ertiga</h5>
+        <span style="color:#9CA3AF;">SUV</span>
+        <div style="margin-top:8px;"><i class="fa fa-user-friends" style="font-size:1.1rem; color:#FB923C;"></i> 6-7 Seater</div>
+        <div style="margin-top:10px;">
+          <span style="background:#374151; padding:4px 10px; border-radius:5px; margin:3px; font-size:0.85rem;">Family Friendly</span>
+          <span style="background:#374151; padding:4px 10px; border-radius:5px; margin:3px; font-size:0.85rem;">AC</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div style="background-color:#1F2937; border-radius:10px; width:23%; min-width:250px; transition:all 0.3s ease; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,0.4);">
+      <img src="{% static 'images/cars/innova.jpeg' %}" alt="Innova Crysta"
+           style="width:100%; height:160px; object-fit:cover; border-top-left-radius:10px; border-top-right-radius:10px;">
+      <div style="padding:15px;">
+        <h5 style="margin:10px 0;">Innova Crysta</h5>
+        <span style="color:#9CA3AF;">Premium SUV</span>
+        <div style="margin-top:8px;"><i class="fa fa-user-friends" style="font-size:1.1rem; color:#4ADE80;"></i> 6-7 Seater</div>
+        <div style="margin-top:10px;">
+          <span style="background:#374151; padding:4px 10px; border-radius:5px; margin:3px; font-size:0.85rem;">Luxury</span>
+          <span style="background:#374151; padding:4px 10px; border-radius:5px; margin:3px; font-size:0.85rem;">AC</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div style="background-color:#1F2937; border-radius:10px; width:23%; min-width:250px; transition:all 0.3s ease; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,0.4);">
+      <img src="{% static 'images/cars/tempo-traveller.jpeg' %}" alt="Tempo Traveller"
+           style="width:100%; height:160px; object-fit:cover; border-top-left-radius:10px; border-top-right-radius:10px;">
+      <div style="padding:15px;">
+        <h5 style="margin:10px 0;">Tempo Traveller</h5>
+        <span style="color:#9CA3AF;">Van</span>
+        <div style="margin-top:8px;"><i class="fa fa-user-friends" style="font-size:1.1rem; color:#ff4343;"></i> 12-17 Seater</div>
+        <div style="margin-top:10px;">
+          <span style="background:#374151; padding:4px 10px; border-radius:5px; margin:3px; font-size:0.85rem;">Large Groups</span>
+          <span style="background:#374151; padding:4px 10px; border-radius:5px; margin:3px; font-size:0.85rem;">Push Back Seats</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+{% comment %} <!-- Book Your Ride (keep original Django form) -->
+<section id="book">
+  <div class="container py-5">
+    <h2 class="text-center mb-2">Book Your Ride</h2>
+    <p class="text-center">Fill in your details and we will get back to you within 30 minutes</p>
+    <div class="booking-card">
+      <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Full Name</label>
+            {{ form.name }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Contact Number</label>
+            {{ form.phone }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Number of Persons</label>
+            {{ form.persons }}
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Travel Start Date</label>
+                {{ form.travel_start_date }}
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Travel End Date</label>
+                {{ form.travel_end_date }}
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Additional Information</label>
+            {{ form.description }}
+        </div>
+        <button type="submit" class="btn w-100 mt-2">Submit Booking Request</button>
+      </form>
+    </div>
+  </div>
+</section> {% endcomment %}
+
+<!-- Booking Section -->
+<section id="book" style="background-color:#111827; padding:70px 0;">
+  <h2 style="text-align:center; font-size:2rem; font-weight:700; color:#fff; margin-bottom:12px;">
+    Book Your Ride
+  </h2>
+  <p style="text-align:center; color:#ccc; margin-bottom:38px; font-size:1rem;">
+    Fill in your details and we’ll confirm within 30 minutes
+  </p>
+  <div style="background:#1E293B; width:808px; max-width:99vw; margin:0 auto; border-radius:22px; padding:38px 34px 32px 34px; box-shadow:0 6px 22px rgba(0,0,0,0.23);">
+    <form method="post" style="display:flex; flex-direction:column; gap:1.8rem;">{% csrf_token %}
+      <!-- 1st Row -->
+      <div style="display:flex; gap:22px;">
+        <div style="flex:1; display:flex; flex-direction:column;">
+          <label for="id_name" style="font-weight:600; color:#e5e7eb; margin-bottom:6px;">Full Name</label>
+          <input type="text" name="name" id="id_name"
+            style="width:100%; background-color:#1F2937; color:#fff; border:1px solid #374151; border-radius:7px; padding:12px 14px; font-size:1rem;">
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column;">
+          <label for="id_phone" style="font-weight:600; color:#e5e7eb; margin-bottom:6px;">Contact Number</label>
+          <input type="text" name="phone" id="id_phone"
+            style="width:100%; background-color:#1F2937; color:#fff; border:1px solid #374151; border-radius:7px; padding:12px 14px; font-size:1rem;">
+        </div>
+      </div>
+      <!-- 2nd Row -->
+      <div style="display:flex; gap:22px;">
+        <div style="flex:1; display:flex; flex-direction:column;">
+          <label for="id_persons" style="font-weight:600; color:#e5e7eb; margin-bottom:6px;">Number of Persons</label>
+          <input type="number" name="persons" id="id_persons"
+            style="width:100%; background-color:#1F2937; color:#fff; border:1px solid #374151; border-radius:7px; padding:12px 14px; font-size:1rem;">
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column;">
+          <label for="id_pickup" style="font-weight:600; color:#e5e7eb; margin-bottom:6px;">Pickup Location</label>
+          <input type="text" name="pickup" id="id_pickup"
+            style="width:100%; background-color:#1F2937; color:#fff; border:1px solid #374151; border-radius:7px; padding:12px 14px; font-size:1rem;">
+        </div>
+      </div>
+      <!-- 3rd Row -->
+      <div style="display:flex; gap:22px;">
+        <div style="flex:1; display:flex; flex-direction:column;">
+          <label for="id_travel_start_date" style="font-weight:600; color:#e5e7eb; margin-bottom:6px;">Travel Start Date</label>
+          <input type="date" name="travel_start_date" id="id_travel_start_date"
+            style="width:100%; background-color:#1F2937; color:#fff; border:1px solid #374151; border-radius:7px; padding:12px 14px; font-size:1rem;">
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column;">
+          <label for="id_travel_end_date" style="font-weight:600; color:#e5e7eb; margin-bottom:6px;">Travel End Date</label>
+          <input type="date" name="travel_end_date" id="id_travel_end_date"
+            style="width:100%; background-color:#1F2937; color:#fff; border:1px solid #374151; border-radius:7px; padding:12px 14px; font-size:1rem;">
+        </div>
+      </div>
+      <!-- 4th Row Full Width -->
+      <div style="display:flex; flex-direction:column;">
+        <label for="id_description" style="font-weight:600; color:#e5e7eb; margin-bottom:6px;">Additional Information</label>
+        <textarea name="description" id="id_description" rows="4"
+          style="width:100%; background-color:#1F2937; color:#fff; border:1px solid #374151; border-radius:7px; padding:12px 14px; font-size:1rem;"></textarea>
+      </div>
+      <!-- Submit Button -->
+      <button type="submit" style="background:#F59E0B; border:none; color:#111; font-weight:600; padding:15px; border-radius:7px; font-size:1.13rem; cursor:pointer; transition:background 0.3s; margin-top:0.7rem;">
+        Submit Booking Request
+      </button>
+    </form>
+  </div>
+</section>
+
+
+
+<!-- Testimonials -->
+<section id="testimonials" style="padding:50px 40px;  background-color:#121212; color:white;">
+  <h2 style="text-align:center; font-size:28px; margin-bottom:10px;">What Our Customers Say</h2>
+  <p style="text-align:center; color:#9CA3AF; margin-bottom:40px;">Don't just take our word for it - hear from our happy customers</p>
+
+  <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px;">
+
+    <!-- Review Card 1 -->
+    <div style="background-color:#1F2937; border-radius:12px; padding:25px; width:23%; min-width:250px; box-shadow:0 4px 15px rgba(0,0,0,0.3);">
+      <div style="display:flex; align-items:center; justify-content:space-between;">
+        <h5 style="margin:0; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size:18px; line-height:28px; font-weight:600; letter-spacing:-0.45px; color:#FFFFFF;">
+          Rahul
+        </h5>
+        <span style="color:#FACC15; font-size:16px;">⭐⭐⭐⭐⭐</span>
+      </div>
+      <div style="margin-top:2px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size:14px; line-height:20px; font-weight:400; color:#9CA3AF;">
+        Mumbai
+      </div>
+      <p style="margin-top:20px; margin-bottom:10px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size:14px; line-height:22.75px; font-weight:400; color:#D1D5DB;">
+        Excellent service and punctual drivers!
+      </p>
+      <small style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size:12px; color:#9CA3AF;">12 Oct 2025</small>
+    </div>
+
+    <!-- Review Card 2 -->
+    <div style="background-color:#1F2937; border-radius:12px; padding:25px; width:23%; min-width:250px; box-shadow:0 4px 15px rgba(0,0,0,0.3);">
+      <div style="display:flex; align-items:center; justify-content:space-between;">
+        <h5 style="margin:0; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size:18px; line-height:28px; font-weight:600; letter-spacing:-0.45px; color:#FFFFFF;">
+          Sita
+        </h5>
+        <span style="color:#FACC15; font-size:16px;">⭐⭐⭐⭐⭐</span>
+      </div>
+      <div style="margin-top:2px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size:14px; line-height:20px; font-weight:400; color:#9CA3AF;">
+        Delhi
+      </div>
+      <p style="margin-top:20px; margin-bottom:10px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size:14px; line-height:22.75px; font-weight:400; color:#D1D5DB;">
+        Clean and comfortable cars, highly recommended.
+      </p>
+      <small style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size:12px; color:#9CA3AF;">05 Oct 2025</small>
+    </div>
+
+    <!-- Review Card 3 -->
+    <div style="background-color:#1F2937; border-radius:12px; padding:25px; width:23%; min-width:250px; box-shadow:0 4px 15px rgba(0,0,0,0.3);">
+      <div style="display:flex; align-items:center; justify-content:space-between;">
+        <h5 style="margin:0; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size:18px; line-height:28px; font-weight:600; letter-spacing:-0.45px; color:#FFFFFF;">
+          Amit
+        </h5>
+        <span style="color:#FACC15; font-size:16px;">⭐⭐⭐⭐⭐</span>
+      </div>
+      <div style="margin-top:2px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size:14px; line-height:20px; font-weight:400; color:#9CA3AF;">
+        Bangalore
+      </div>
+      <p style="margin-top:20px; margin-bottom:10px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size:14px; line-height:22.75px; font-weight:400; color:#D1D5DB;">
+        Great experience with friendly drivers!
+      </p>
+      <small style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size:12px; color:#9CA3AF;">20 Sep 2025</small>
+    </div>
+
+    <!-- Review Card 4 -->
+    <div style="background-color:#1F2937; border-radius:12px; padding:25px; width:23%; min-width:250px; box-shadow:0 4px 15px rgba(0,0,0,0.3);">
+      <div style="display:flex; align-items:center; justify-content:space-between;">
+        <h5 style="margin:0; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size:18px; line-height:28px; font-weight:600; letter-spacing:-0.45px; color:#FFFFFF;">
+          Jay
+        </h5>
+        <span style="color:#FACC15; font-size:16px;">⭐⭐⭐⭐⭐</span>
+      </div>
+      <div style="margin-top:2px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size:14px; line-height:20px; font-weight:400; color:#9CA3AF;">
+        Gujarat
+      </div>
+      <p style="margin-top:20px; margin-bottom:10px; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size:14px; line-height:22.75px; font-weight:400; color:#D1D5DB;">
+        Really Maza aa gaya travelling kar ke..!
+      </p>
+      <small style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; font-size:12px; color:#9CA3AF;">10 Oct 2025</small>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Footer -->
+<footer id="footer">
+    <hr class="footer-line"/>
+
+    
+    <div class="footer-content">
+        <div class="footer-column">
+            <div class="footer-logo"><img src="{% static 'images/logo.jpg' %}" style="height:40px;width:40px;vertical-align:middle;"><div style="display: block; padding-left: 5px; padding-top: -5px;"><span style="display: block;"class="footer-brand -pt-3">Qutbi Travels<span class="footer-sub">Premium Rentals</span></span></div></div>
+            <div style="padding-top: 10px;"><small>Your trusted partner for comfortable and safe travel across India</small></div>
+        </div>
+
+
+        <div class="footer-column">
+            <h5>Contact Us</h5>
+            <div><i class="fa fa-location-dot footer-icon"></i>Behind Mazar-e-Qutbi, Amdumura, Saraspur, Ahmedabad - 380018</div>
+            <div><i class="fa fa-phone footer-icon"></i>+91 987654321</div>
+            <div><i class="fa fa-envelope footer-icon"></i>info@qutbitravels.com</div>
+        </div>
+        <div class="footer-column">
+            <h5>Quick Links</h5>
+            <a href="#book">Book Now</a>
+            <a href="#fleet">Fleet</a>
+            <a href="#testimonials">Testimonials</a>
+        </div>
+    </div>
+    <hr class="footer-line"/>
+    <div class="footer-copy">&copy; 2024 Qutbi Travels. All rights reserved. Designed with care for your journey.</div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Smooth scroll (for older browsers)
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        var href = this.getAttribute('href');
+        if (href.length > 1 && document.querySelector(href)) {
+            e.preventDefault();
+            document.querySelector(href).scrollIntoView({behavior: 'smooth'});
+        }
+    });
+});
+</script>
+</body>
+</html>
